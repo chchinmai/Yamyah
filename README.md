@@ -100,3 +100,78 @@ apply plugin: 'com.google.gms.google-services'
   ],
   "configuration_version": "1"
 }
+
+                                            XML
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chinmay.firebase.MainActivity">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:onClick="save"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="257dp" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Products"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+</android.support.constraint.ConstraintLayout
+
+                                            MainActivity.java
+package com.example.chinmay.firebase;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+import com.google.firebase.database.FirebaseDatabase;
+
+public class MainActivity extends AppCompatActivity {
+    EditText products,name;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        products=(EditText)findViewById(R.id.editText1);
+        name=(EditText)findViewById(R.id.editText2);
+
+        firebaseDatabase= FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference();
+    }
+
+    public void save(View view) {
+        databaseReference.child("products").setValue(products.getText().toString());
+        databaseReference.child("name").setValue(name.getText().toString());
+
+
+    }
+}
+
+
