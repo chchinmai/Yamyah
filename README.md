@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         products=(EditText)findViewById(R.id.editText1);
         name=(EditText)findViewById(R.id.editText2);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_database);
+        setContentView(R.layout.activity_main);
         mref= new Firebase['https://fir-b1318.firebaseio.com/'];
         Firebase.setAndroidContext(this);
         b.setOnClickListener(new View.OnClickListener() {
