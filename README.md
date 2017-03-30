@@ -146,31 +146,35 @@ package com.example.chinmay.firebase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
-    EditText products,name;
-    Button save;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private Button save;
+    private EditText products,name;
+    private Firebase mref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        save=(Button)findViewById(R.id.button1);
         products=(EditText)findViewById(R.id.editText1);
         name=(EditText)findViewById(R.id.editText2);
-        save = (Button)findViewById(R.id.button1);
-        firebaseDatabase= FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference();
-    }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_database);
+        mref= new Firebase['https://fir-b1318.firebaseio.com/'];
+        Firebase.setAndroidContext(this);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value1=products.getText().toString();
+                String key1=name.getText().toString();
+                Firebase mrefchild = mref.child(key1);
 
-    public void save(View view) {
-        databaseReference.child("products").setValue(products.getText().toString());
-        databaseReference.child("name").setValue(name.getText().toString());
-
+                mrefchild.setValue(value1);
+            }
+        });
 
     }
 }
