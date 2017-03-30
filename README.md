@@ -152,6 +152,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     EditText products,name;
+    Button save;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         products=(EditText)findViewById(R.id.editText1);
         name=(EditText)findViewById(R.id.editText2);
-
+        save = (Button)findViewById(R.id.button1);
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
     }
